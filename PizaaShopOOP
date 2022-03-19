@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+
+class Pizza
+{
+	void MakeDough()
+	{
+		cout << "Creating dough..." << endl;
+	}
+
+	void Bake()
+	{
+		cout << "Baking pizza...." << endl;
+	}
+
+protected:
+	virtual void AddToppings() = 0;
+
+public:
+	void MakePizza()
+	{
+		MakeDough();
+		AddToppings();
+		Bake();
+		cout << "Pizza is ready" << endl;
+	}
+};
+
+class CheesePizza : public Pizza
+{
+	void AddToppings()
+	{
+		cout << "Adding cheese toppings..." << endl;
+	}
+};
+
+class ChickenPizza : public Pizza
+{
+	void AddToppings()
+	{
+		cout << "Adding chicken toppings..." << endl;
+	}
+};
+
+class BeefPizza : public Pizza
+{
+	void AddToppings()
+	{
+		cout << "Adding beef toppings..." << endl;
+	}
+};
+
+class ShrimpPizza : public Pizza
+{
+	void AddToppings()
+	{
+		cout << "Adding Shrimp toppings..." << endl;
+	}
+};
+
+void MakePizza(Pizza * p)
+{
+	p->MakePizza();
+}
+
+void main()
+{
+	int choice;
+	cout << "For chicken pizza enter 1, for beef pizza enter 2, for cheese pizza enter 3, for shrimp enter 4: ";
+	cin >> choice;
+
+	switch (choice)
+	{
+	case 1:
+		MakePizza(new ChickenPizza);
+		break;
+
+	case 2:
+		MakePizza(new BeefPizza);
+		break;
+
+	case 3:
+		MakePizza(new CheesePizza);
+		break;
+
+	case 4:
+		MakePizza(new ShrimpPizza);
+		break;
+
+	default:
+		cout << "Invalid input..." << endl;
+	}
+
+	cin >> choice;
+}
